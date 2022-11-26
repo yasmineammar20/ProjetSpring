@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="https://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Ajouter Client</h1>
+
+	<form th:action="@{/client/update}" method="POST">
+		<table>
+
+			<tr>
+				<td>Cin</td>
+				<td><input type="text" name="cin" th:value=${client.cin}
+					readOnly></td>
+
+			</tr>
+			<tr>
+				<td>Nom</td>
+				<td><input type="text" name="nom" th:value="${client.nom}"></td>
+
+			</tr>
+			<tr>
+				<td>Prenom</td>
+				<td><input type="text" name="prenom" th:value=${client.prenom} /></td>
+
+			</tr>
+
+			<tr>
+
+				<td><input type="submit" name="add" /></td>
+
+			</tr>
+		</table>
+
+
+	</form>
+</body>
+</html>

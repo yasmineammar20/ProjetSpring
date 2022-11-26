@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="https://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Compte</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/comptes.css" rel="stylesheet">
+</head>
+</head>
+<body>
+	<h1>Attijari</h1>
+
+	<form th:action="@{/compte/save}" method="POST">
+		<table>
+			<tr>
+				<td>Client CIN</td>
+				<td><input type="text" name="cin" /></td>
+
+			</tr>
+			<tr>
+				<td>Solde</td>
+				<td><input type="text" name="solde" /></td>
+
+			</tr>
+			<tr>
+
+				<td><input type="submit" name="add" class="btn btn-primary" /></td>
+
+			</tr>
+		</table>
+
+
+	</form>
+	<h1>Listes des comptes</h1>
+	<table border="1" class="table table-striped table-hover">
+		<tr>
+			<td>Rib</td>
+			<td>client</td>
+			<td>solde</td>
+			<td>Delete-path</td>
+			<td>Delete-request</td>
+			<td>Delete-ajax</td>
+			<td>Edit</td>
+		</tr>
+		<tr th:id="${compte.rib}" th:each="compte:${comptes}">
+
+			<td th:text="${compte.rib}" />
+
+			<td th:text="${compte.client.nom}+ ' ' + ${compte.client.prenom}"/>
+
+			<td th:text="${compte.solde}" />
+			<td><a th:href="@{'/compte/delete-path/'+${compte.rib}}">delete-path</a></td>
+			<td><a th:href="@{/compte/delete-request(rib=${compte.rib})}">delete-request</a></td>
+			<td><a th:href="|javascript:deteleCompte(${compte.rib})|">delete-ajax</a></td>
+			<td><form th:action="@{/compte/edit}" method="POST">
+					<input type=hidden name="rib" th:value="${compte.rib}" /> <input
+						type="submit" value="edit" class="btn btn-warning" />
+				</form></td>
+
+		</tr>
+	</table>
+	<script src="../js/jquery-3.6.0.min.js">
+		
+	</script>
+	<script src="../js/bootstrap.bundle.min.js">
+		
+	</script>
+	<script src="../js/sweetalert.min.js"></script>
+	<script src="../js/comptes.js">
+		
+	</script>
+	
+
+</body>
+</html>
